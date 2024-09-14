@@ -4,7 +4,7 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js'
 const canvas = document.getElementById('canvas');
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('#F0F0F0');
+scene.background = new THREE.Color('#343131');
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 5;
@@ -32,24 +32,29 @@ renderer.pixelRatio = window.devicePixelRatio;
 renderer.render(scene, camera);
 
 const orbitControls = new OrbitControls(camera, renderer.domElement);
-orbitControls.enableDamping(true);
+orbitControls.enableDamping = true;
 orbitControls.dampingFactor = 0.05;
-orbitControls.enablePan(true);
-orbitControls.enableZoom(true);
+orbitControls.enablePan = true;
+orbitControls.enableZoom = true;
 orbitControls.update();
 
 function animate() {
-  requestAnimationFrame(() => {
-    orbitControls.update();
-    dodecahedron.rotation.x += 0.01;
-    dodecahedron.rotation.y += 0.01;
-    box.rotateY+= 0.1;
-  });
+  requestAnimationFrame(animate);
+  orbitControls.update();
+  dodecahedron.rotation.x += 0.01;
+  dodecahedron.rotation.y += 0.01;
+  box.rotation.y += 0.01;
+  renderer.render(scene, camera);
 }
 
 animate();
 
 window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  
+
+  orbitControls.update();
+  renderer.render(scene, camera);
+
 })
