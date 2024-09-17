@@ -29,7 +29,7 @@ const Navbar = () => {
           <a
             href="/"
             className="text-neutral-400 hover:text-white font-bold text-xl transition-colors">
-            🎨 Esraa Abduallah
+            Esraa Abduallah
           </a>
 
           <button
