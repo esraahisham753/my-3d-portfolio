@@ -2,14 +2,13 @@ import { useState } from "react";
 import { navLinks } from "../constants";
 
 const NavItems = () => {
-  const items = navLinks.map(({id, href, name}) => (
-      <li key={id} className="nav-li">
-        <a href={href} className="nav-li_a" onClick={() => {}}>
-          {name}
-        </a>
-      </li>
-    )
-  );
+  const items = navLinks.map(({ id, href, name }) => (
+    <li key={id} className="nav-li">
+      <a href={href} className="nav-li_a" onClick={() => {}}>
+        {name}
+      </a>
+    </li>
+  ));
 
   return <ul className="nav-ul">{items}</ul>;
 };
@@ -24,13 +23,13 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-black/90 fixed top-0 left-0 right-0">
+    <header className="bg-black/90 fixed z-50 top-0 left-0 right-0">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between mx-auto py-5 items-center text-white c-space">
           <a
             href="/"
             className="text-neutral-400 hover:text-white font-bold text-xl transition-colors">
-            Esraa
+            🎨 Esraa Abduallah
           </a>
 
           <button
@@ -45,13 +44,15 @@ const Navbar = () => {
             }
           </button>
 
-          <nav className="sm:flex hidden">{<NavItems />}</nav>
+          <nav className="sm:flex hidden">
+            <NavItems />
+          </nav>
         </div>
       </div>
-      <div className={`nav-sidebar ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
-            {
-              <NavItems />
-            }
+      <div className={`nav-sidebar ${isOpen ? "max-h-screen" : "max-h-0"}`}>
+        <nav className="p-5">
+          <NavItems />
+        </nav>
       </div>
     </header>
   );
